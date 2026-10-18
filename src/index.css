@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .hero-gradient {
+    background: linear-gradient(135deg, #2b1158 0%, #7b1d8e 35%, #e11d48 70%, #fb923c 100%);
+  }
+  .brand-button-gradient {
+    background: linear-gradient(to right, #7b1d8e, #e11d48, #fb923c);
+    background-size: 200% auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .brand-button-gradient:hover {
+    background-position: right center;
+    box-shadow: 0 10px 20px -10px rgba(225, 29, 72, 0.5);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================================
+   Rich Text Editor (.rte-content) & Published Content (.rich-html-content)
+   Restores rich publishing typography inside Tailwind v4 preflight
+   ============================================================================ */
+.rte-content:empty:before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  display: block;
+  font-style: italic;
+}
+
+.rte-content h1,
+.rich-html-content h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.25;
+  margin: 1rem 0 0.5rem;
+}
+
+.rte-content h2,
+.rich-html-content h2 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.3;
+  margin: 0.9rem 0 0.45rem;
+}
+
+.rte-content h3,
+.rich-html-content h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.4;
+  margin: 0.75rem 0 0.35rem;
+}
+
+.rte-content h4,
+.rich-html-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 0.6rem 0 0.3rem;
+}
+
+.rte-content p,
+.rich-html-content p {
+  margin-bottom: 0.75rem;
+  line-height: 1.75;
+}
+
+.rte-content ul,
+.rich-html-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 0.6rem 0;
+}
+
+.rte-content ol,
+.rich-html-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin: 0.6rem 0;
+}
+
+.rte-content li,
+.rich-html-content li {
+  margin-bottom: 0.25rem;
+  line-height: 1.65;
+}
+
+.rte-content blockquote,
+.rich-html-content blockquote {
+  border-left: 4px solid #7b1d8e;
+  background: #faf5ff;
+  color: #4c1d95;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin: 0.85rem 0;
+  font-style: italic;
+}
+
+.rte-content pre,
+.rich-html-content pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.825rem;
+  overflow-x: auto;
+  margin: 0.85rem 0;
+}
+
+.rte-content table,
+.rich-html-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.85rem 0;
+  font-size: 0.875rem;
+}
+
+.rte-content th,
+.rich-html-content th {
+  background: #f3e8ff;
+  color: #581c87;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d8b4fe;
+}
+
+.rte-content td,
+.rich-html-content td {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #e5e7eb;
+}
+
+.rte-content hr,
+.rich-html-content hr {
+  border: 0;
+  border-top: 2px dashed #e5e7eb;
+  margin: 1.25rem 0;
+}
+
+.rte-content a,
+.rich-html-content a {
+  color: #7b1d8e;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.rte-content img,
+.rich-html-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+/* ============================================================================
+   Bootstrap-Style Placeholder Loading Skeletons (.placeholder-glow / .placeholder-wave)
+   Implemented natively in Tailwind CSS
+   ============================================================================ */
+@keyframes placeholder-glow-anim {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes placeholder-wave-anim {
+  100% {
+    mask-position: -200% 0%;
+    -webkit-mask-position: -200% 0%;
+    background-position: -200% 0;
+  }
+}
+
+.placeholder-glow .placeholder-box {
+  animation: placeholder-glow-anim 1.8s ease-in-out infinite;
+}
+
+.placeholder-wave {
+  background: linear-gradient(
+    90deg,
+    #e5e7eb 25%,
+    #f3f4f6 37%,
+    #e5e7eb 63%
+  );
+  background-size: 400% 100%;
+  animation: placeholder-wave-anim 1.5s ease-in-out infinite;
+}
+

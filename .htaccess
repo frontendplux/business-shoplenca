@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Pass Authorization header through to PHP for mobile app Bearer tokens
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+  # Serve /api endpoints directly via PHP
+  RewriteRule ^api/([a-zA-Z0-9_-]+)$ api/$1.php [L,QSA]
+  RewriteCond %{REQUEST_URI} /api/
+  RewriteRule ^ - [L]
+
+  # Serve existing static files directly
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Serve built assets from dist/ if they exist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^assets/(.+)$ dist/assets/$1 [L]
+
+  # Fallback all SPA routes to dist/index.html
+  RewriteRule ^ dist/index.html [L]
+</IfModule>
